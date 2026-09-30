@@ -5,7 +5,8 @@ on:
   pull_request:
     branches: [community, founder]
   push:
-    branches: [community, founder]
+    branches: [community, founder, 'ci/**']
+  workflow_dispatch:
 permissions:
   contents: read
 jobs:
