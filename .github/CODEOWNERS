@@ -1,0 +1,12 @@
+# P3 ownership. Every path is owned by @wds4 (David Strayhorn), so the `founder` ruleset
+# (require Code Owner review, no bypass actors) makes every change to `founder` need his approval.
+# The explicit lines name the L0 and rules files (RULES.md §0, §8).
+*                                              @wds4
+/question-graph/root-theory-of-the-observer.md @wds4
+/p42/                                          @wds4
+/RULES.md                                      @wds4
+/GATE.md                                       @wds4
+/tools/                                        @wds4
+/.github/                                      @wds4
+/LICENSE                                       @wds4
+/LICENSE-CODE                                  @wds4

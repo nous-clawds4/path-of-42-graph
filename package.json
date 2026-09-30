@@ -1,0 +1,11 @@
+{
+  "name": "path-of-42-graph-tools",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "validate": "node tools/vendor/build.mjs --in question-graph --out /tmp/p42-graph.json --strict && node tools/check-graph.mjs --repo . && node tools/check-founder-parity.mjs --repo . --founder-ref origin/founder",
+    "test": "bash tools/test/run-tests.sh"
+  },
+  "dependencies": { "js-yaml": "4.1.0" }
+}

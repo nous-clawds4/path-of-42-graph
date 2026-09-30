@@ -1,0 +1,10 @@
+{
+  "file": "question-graph/root-theory-of-the-observer.md",
+  "id": "root-theory-of-the-observer",
+  "body_sha256": "97e3a6366bca5d63185f4a227d2750bcc6298e14d07f1cb92df2d6e8875d1597",
+  "hash_of": "the bytes after the closing frontmatter line '---\\n' (LF endings, final newline included)",
+  "source": "https://github.com/nous-clawds4/physics/blob/5acf9d39ee387b8b923bd06cff11a20e1e88532c/public-essays/statement-of-the-problem/versions/v0.5.md#L9-L15",
+  "source_pr": "https://github.com/nous-clawds4/physics/pull/194",
+  "authority_pubkey": "e5272de914bd301755c439b88e6959a43c9d2664831f093c51e9c799a16a102f",
+  "authority_record": "infinite-harness docs/authority.md (P3 row pending in https://github.com/nous-clawds4/infinite-harness/pull/8)"
+}

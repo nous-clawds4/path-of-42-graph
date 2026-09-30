@@ -1,0 +1,42 @@
+# P3 CI (build plan M2). Unprivileged: read-only token, no secrets.
+# The checkers run from the BASE branch's copy of tools/, so a PR cannot weaken the checks it is judged by.
+name: ci
+on:
+  pull_request:
+    branches: [community, founder]
+  push:
+    branches: [community, founder]
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Load trusted checkers from the base branch
+        env:
+          BASE: ${{ github.base_ref || github.ref_name }}
+        run: |
+          git fetch --no-tags origin founder "$BASE"
+          mkdir -p "$RUNNER_TEMP/trusted"
+          git archive "origin/$BASE" tools package.json package-lock.json | tar -x -C "$RUNNER_TEMP/trusted"
+          cd "$RUNNER_TEMP/trusted" && npm ci --ignore-scripts --no-audit --no-fund
+      - name: Viewer validator (build.mjs --strict)
+        run: node "$RUNNER_TEMP/trusted/tools/vendor/build.mjs" --in question-graph --out "$RUNNER_TEMP/graph.json" --strict
+      - name: Founder hash, hold cap, required fields, reopen_if
+        run: node "$RUNNER_TEMP/trusted/tools/check-graph.mjs" --repo .
+      - name: L0/L1 must match founder (fails closed until P3's authority row exists)
+        env:
+          BASE: ${{ github.base_ref || github.ref_name }}
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            node "$RUNNER_TEMP/trusted/tools/check-founder-parity.mjs" --repo . --founder-ref origin/founder --base-ref "origin/$BASE"
+          else
+            node "$RUNNER_TEMP/trusted/tools/check-founder-parity.mjs" --repo . --founder-ref origin/founder
+          fi

@@ -1,0 +1,8 @@
+# Graph-level metadata (not a node).
+title: "Path of 42: A Theory of the Observer (P3)"
+sample: false
+note: >-
+  Founder node only. The first children are expected from the physics pilot's
+  retro-map (not yet filed). Nothing here is invented.
+repo_url: https://github.com/nous-clawds4/path-of-42-graph
+source_base_url: https://github.com/nous-clawds4/path-of-42-graph/blob/community/question-graph/
